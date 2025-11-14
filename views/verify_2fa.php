@@ -3,7 +3,7 @@ include '../includes/config.php';
 
 // ATENÇÃO: Verificação de acesso (usuário logado E 2FA pendente)
 if (!isset($_SESSION['id']) || !isset($_SESSION['2fa_pending'])) {
-    header("Location: /Projeto_AWS/newFinanceFlowapp/views/login.php");
+    header("Location: /newFinanceFlowapp/views/login.php");
     exit;
 }
 
@@ -19,7 +19,7 @@ $row = $result->fetch_assoc();
 $stmt->close();
 
 if (!$row) {
-    header("Location: /Projeto_AWS/newFinanceFlowapp/views/2fa.php?error=notfound");
+    header("Location: /newFinanceFlowapp/views/2fa.php?error=notfound");
     exit;
 }
 
@@ -30,7 +30,7 @@ $delete_stmt->bind_param("i", $user_id);
 if (time() > strtotime($row['expires_at'])) {
     $delete_stmt->execute();
     $delete_stmt->close();
-    header("Location: /Projeto_AWS/newFinanceFlowapp/views/2fa.php?error=expired");
+    header("Location: /newFinanceFlowapp/views/2fa.php?error=expired");
     exit;
 }
 
@@ -53,7 +53,7 @@ if (password_verify($code_input, $row['code_hash'])) {
     $update_stmt->execute();
     $update_stmt->close();
 
-    header("Location: /Projeto_AWS/newFinanceFlowapp/views/2fa.php?error=invalid");
+    header("Location: /newFinanceFlowapp/views/2fa.php?error=invalid");
     exit;
 }
 ?>
