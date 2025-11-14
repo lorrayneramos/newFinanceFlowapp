@@ -59,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 $_SESSION["2fa_verified"] = false; // Bloqueia o acesso ao dashboard
 
                                 // Redireciona para a página de verificação 2FA
-                                header("location: 2fa.php"); 
+                                header("location: /newfinanceflow/views/2fa/2fa.php"); 
                                 exit;
                             } else {
                                 // Se 2FA não estiver ativo, concede acesso total
